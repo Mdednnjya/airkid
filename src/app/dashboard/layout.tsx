@@ -1,7 +1,7 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import Header from "@/components/footer";
 import Footer from "@/components/header";
-import { Sidebar, SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Sidebar, SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function DashboardLayout({children}: {children: React.ReactNode}) {
 
@@ -10,6 +10,7 @@ export default function DashboardLayout({children}: {children: React.ReactNode})
             <SidebarProvider>
                 <AppSidebar variant="inset"/>
                 <SidebarInset>
+                    <SidebarTrigger className="md:hidden"/>
                     <main className="px-4 py-4">
                         {children}
                     </main>

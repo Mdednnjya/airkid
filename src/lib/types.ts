@@ -1,3 +1,4 @@
+// Sidebar
 export type SidebarMenuType = {
     [role: string]: {
         title: string,
@@ -11,3 +12,20 @@ export type SidebarMenuItemType = {
     url: string,
     icon: any
 }
+
+// Air Quality
+export type HourlyData = {
+  time: string;
+  weatherIcon: React.ElementType;
+  chanceOfRain: string;
+  aqi: number;
+  humidity: string;
+};
+
+export type DailyData = {
+  day: string;
+  weatherIcon: React.ElementType;
+  chanceOfRain: string;
+  aqi: number;
+  humidity: string;
+};
