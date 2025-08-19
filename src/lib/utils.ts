@@ -14,3 +14,11 @@ export async function signInWithGoogle() {
     console.error(error);
   }
 }
+
+export async function LogOut() {
+  try {
+    // will perform logout here, todo
+  } catch (error) {
+
+  }
+}
