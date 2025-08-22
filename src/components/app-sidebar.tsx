@@ -1,89 +1,57 @@
-"use client"
+// File: src/components/app-sidebar.tsx
+
+"use client";
 
 import * as React from "react"
-
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarRail,
 } from "@/components/ui/sidebar"
-import { SidebarMenuType } from "@/lib/types"
-import { Home, Library, Locate, LogOutIcon } from "lucide-react"
-import { 
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-  DialogClose,
-  DialogDescription,
-  DialogTrigger
- } from "./ui/dialog"
-import { Button } from "./ui/button"
-import { LogOut } from "@/lib/utils"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { Home, Map, LineChart, User } from "lucide-react";
+import Image from "next/image";
 
-const roleMenu: SidebarMenuType = {
-  user : [
-    {
-      title: "Menu",
-      items: [
-        {
-         title: "location",
-         url: "/dashboard/location",
-         icon: Locate
-        },
-        {
-         title: "Dashboard",
-         url: "/dashboard/insight",
-         icon: Home 
-        },
-      ]
-    },
-  ]
-}
-
+const navItems = [
+  { href: '/today', icon: Home, label: 'Today' },
+  { href: '/explore', icon: Map, label: 'Explore' },
+  { href: '/forecast', icon: LineChart, label: 'Forecast' },
+  { href: '/profile', icon: User, label: 'Profile' },
+];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const currentPage = usePathname();
-
+  const pathname = usePathname();
 
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        Air Kid Logo <br />
+        <Image 
+          src="/AirKid-logo-with-text.jpg" 
+          alt="AirKid Logo" 
+          width={120} 
+          height={120}
+        />
       </SidebarHeader>
       <SidebarContent>
-        {roleMenu.user.map((item) => (
-          <SidebarGroup key={item.title}>
-            <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {item.items.map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild isActive={currentPage === item.url}>
-                      <Link href={item.url}>
-                      <item.icon/>
-                      {item.title}
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        ))}
+        <SidebarMenu>
+          {navItems.map((item) => (
+            <SidebarMenuItem key={item.label}>
+              <SidebarMenuButton asChild isActive={pathname === item.href}>
+                <Link href={item.href}>
+                  <item.icon className="w-5 h-5" />
+                  {item.label}
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
+        </SidebarMenu>
       </SidebarContent>
-      <SidebarFooter>
+      {/* Todo: Decide Later */}
+      {/* <SidebarFooter>
         <Dialog>
             <DialogTrigger asChild><Button variant={"outline"}> <LogOutIcon/> Logout</Button></DialogTrigger>
               <form action="">
@@ -103,7 +71,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </DialogContent>
               </form>
         </Dialog>
-      </SidebarFooter>
+      </SidebarFooter> */}
     </Sidebar>
   )
 }
