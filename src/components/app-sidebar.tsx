@@ -30,7 +30,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Sidebar {...props}>
       <SidebarHeader>
         <Image 
-          src="/AirKid-logo-with-text.jpg" 
+          src="/images/logo-with-text.png" 
           alt="AirKid Logo" 
           width={120} 
           height={120}
