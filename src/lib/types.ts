@@ -1,3 +1,6 @@
+import { User } from 'firebase/auth';
+
+
 // Sidebar
 export type SidebarMenuType = {
     [role: string]: {
@@ -29,3 +32,14 @@ export type DailyData = {
   aqi: number;
   humidity: string;
 };
+
+// Auth Aspect
+export type PersonalizationModalProps =  {
+  user: User | null;
+  onClose: () => void;
+}
+
+export type AuthContextType = {
+  user: User | null;
+  loading: boolean;
+}
