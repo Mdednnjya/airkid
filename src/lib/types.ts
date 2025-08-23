@@ -43,3 +43,4 @@ export type AuthContextType = {
   user: User | null;
   loading: boolean;
 }
+
