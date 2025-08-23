@@ -58,7 +58,6 @@ export function LoginForm({
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
       router.push("/today"); 
-      setError("Failed to sign in with Google. Please try again.");
     } finally {
       setIsGoogleLoading(false);
     }
