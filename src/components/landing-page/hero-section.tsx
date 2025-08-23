@@ -26,7 +26,7 @@ export default function HeroSection() {
               bermain yang aman untuk anak Anda.
             </p>
             <Button asChild className="mt-8">
-              <Link href="/auth/sign-up">Coba Sekarang</Link>
+              <Link href="/sign-up">Coba Sekarang</Link>
             </Button>
           </div>
 

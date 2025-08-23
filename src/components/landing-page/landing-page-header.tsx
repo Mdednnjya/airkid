@@ -48,11 +48,11 @@ export function LandingPageHeader() {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-2">
-          <Button asChild variant="default" className='bg-white text-[#0266B8] rounded-full font-bold'>
-            <Link href="/auth/sign-up">Sign Up</Link>
+          <Button asChild variant="default" className='bg-white text-[#0266B8] rounded-full font-bold hover:bg-grey-20 hover:shadow-md transition-all'>
+            <Link href="/sign-up">Sign Up</Link>
           </Button>
-          <Button asChild className='rounded-full font-bold'>
-            <Link href="/auth/sign-in">Sign In</Link>
+          <Button asChild className='rounded-full font-bold  hover:shadow-md transition-all'>
+            <Link href="/sign-in">Sign In</Link>
           </Button>
         </div>
       </div>

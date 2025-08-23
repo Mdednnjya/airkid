@@ -8,13 +8,17 @@ import Link from "next/link";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Home, Map, LineChart, User } from "lucide-react";
+import { Home, Map, LineChart, User, LogOutIcon } from "lucide-react";
 import Image from "next/image";
+import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
+import { Button } from "./ui/button";
+import { DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "./ui/dialog";
 
 const navItems = [
   { href: '/today', icon: Home, label: 'Today' },
@@ -25,6 +29,11 @@ const navItems = [
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
+
+  const handleLogout = async () => {
+      await signOutUser();
+      router.push('/'); 
+    };
 
   return (
     <Sidebar {...props}>
@@ -56,19 +65,19 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <DialogTrigger asChild><Button variant={"outline"}> <LogOutIcon/> Logout</Button></DialogTrigger>
               <form action="">
               <DialogContent>
-                
                 <DialogHeader>
-                  <DialogTitle>Are you sure want to Log Out?</DialogTitle>
-                  <DialogDescription>You will be signed out of your account and redirect to login page.</DialogDescription>
+                  <DialogTitle>Confirm Logout</DialogTitle>
+                  <DialogDescription>
+                    Are you sure you want to log out? You will be signed out and redirected to the login page.
+                  </DialogDescription>
                 </DialogHeader>
-                <br />
                 <DialogFooter>
                   <DialogClose asChild>
-                    <Button variant={"outline"}>cancel</Button>
+                    <Button variant={"outline"}>Cancel</Button>
                   </DialogClose>
-                  <Button type="submit">Logout</Button>
+                  <Button type="submit" variant={"destructive"} onClick={handleLogout}>Log Out</Button>
                 </DialogFooter>
-            </DialogContent>
+              </DialogContent>
               </form>
         </Dialog>
       </SidebarFooter> */}
