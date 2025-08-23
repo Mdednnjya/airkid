@@ -7,6 +7,7 @@ import { auth, db } from '@/lib/firebase';
 import { PersonalizationModal } from './personalization-modal';
 import { LoadingSpinner } from './loading-spinner';
 import { AuthContextType } from '@/lib/types';
+import { AppSkeleton } from './app-skeleton';
 
 const AuthContext = createContext<AuthContextType>({ user: null, loading: true });
 
@@ -46,7 +47,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // While the initial auth check is running, show a loading spinner
   if (loading) {
-    return <LoadingSpinner />;
+    return <AppSkeleton />;
   }
 
   return (
