@@ -13,6 +13,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
+import { FirebaseError } from "firebase/app";
+
 
 export function RegisterForm({
   className,
@@ -26,35 +28,46 @@ export function RegisterForm({
   const router = useRouter();
 
   const handleSignUp = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    setIsLoading(true);
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      router.push("/today");
-    } catch (err: any) {
+  e.preventDefault();
+  setError(null);
+  setIsLoading(true);
+
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    router.push("/today");
+  } catch (err: unknown) {
+    if (err instanceof FirebaseError) {
       if (err.code === "auth/email-already-in-use") {
         setError("This email is already in use. Please sign in.");
+      } else if (err.code === "auth/weak-password") {
+        setError("The password is too weak. Please use a stronger password.");
       } else {
         setError("Failed to create an account. Please try again.");
       }
-    } finally {
-      setIsLoading(false);
+    } else {
+      setError("An unexpected error occurred. Please try again.");
     }
-  };
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const handleGoogleSignIn = async () => {
-    setError(null);
-    setIsGoogleLoading(true);
-    try {
-      await signInWithGoogle();
-      router.push("/today");
-    } catch (err: any) {
+  setError(null);
+  setIsGoogleLoading(true);
+  try {
+    await signInWithGoogle();
+    router.push("/today");
+  } catch (err: unknown) {
+    if (err instanceof FirebaseError) {
       setError("Could not sign up with Google. Please try again.");
-    } finally {
-      setIsGoogleLoading(false);
+    } else {
+      setError("An unexpected error occurred. Please try again.");
     }
-  };
+  } finally {
+    setIsGoogleLoading(false);
+  }
+};
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -68,6 +81,7 @@ export function RegisterForm({
                   alt="AirKid Logo"
                   width={800}
                   height={400}
+                  priority
                 />
               </Link>
             </div>

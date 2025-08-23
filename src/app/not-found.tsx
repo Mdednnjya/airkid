@@ -39,7 +39,7 @@ export default function NotFound() {
           Page Not Found
         </h1>
         <p className="mt-4 text-lg text-gray-600">
-          Oops! It looks like this page has floated away. Let's get you back on track.
+          Oops! It looks like this page has floated away. Let&apos;s get you back on track.
         </p>
         {user ? (
           <Button asChild className="mt-8">

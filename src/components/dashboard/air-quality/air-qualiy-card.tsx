@@ -1,9 +1,6 @@
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 
 export function AirQualityCard({ aqi, concentration }: { aqi: number, concentration: number }) {

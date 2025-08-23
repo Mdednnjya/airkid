@@ -12,6 +12,7 @@ import { FcGoogle } from "react-icons/fc";
 import Image from "next/image";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
+import { FirebaseError } from "firebase/app";
 
 export function LoginForm({
   className,
@@ -25,14 +26,15 @@ export function LoginForm({
   const router = useRouter();
 
   const handleSignIn = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    setIsLoading(true);
+  e.preventDefault();
+  setError(null);
+  setIsLoading(true);
 
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      router.push("/today");
-    } catch (err: any) {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    router.push("/today");
+  } catch (err: unknown) {
+    if (err instanceof FirebaseError) {
       if (err.code === "auth/user-not-found") {
         setError("No account found with this email. Please sign up.");
       } else if (err.code === "auth/wrong-password") {
@@ -40,10 +42,13 @@ export function LoginForm({
       } else {
         setError("Failed to sign in. Please try again.");
       }
-    } finally {
-      setIsLoading(false);
+    } else {
+      setError("An unexpected error occurred. Please try again.");
     }
-  };
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const handleGoogleSignIn = async () => {
     setError(null);
@@ -71,6 +76,7 @@ export function LoginForm({
                   alt="AirKid Logo"
                   width={800}
                   height={400}
+                  priority
                 />
               </Link>
             </div>

@@ -13,7 +13,7 @@ export type SidebarMenuType = {
 export type SidebarMenuItemType = {
     title: string,
     url: string,
-    icon: any
+    icon: React.ElementType;
 }
 
 // Air Quality

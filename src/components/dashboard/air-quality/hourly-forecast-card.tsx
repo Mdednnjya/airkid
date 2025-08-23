@@ -8,10 +8,8 @@ import { HourlyData } from "@/lib/types";
 import { 
   Cloud, 
   CloudRain, 
-  CloudSun, 
   Droplets, 
   Cloudy,
-  Sun
 } from "lucide-react";
 
 // tempData

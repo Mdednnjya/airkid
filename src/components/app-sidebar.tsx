@@ -19,6 +19,9 @@ import Image from "next/image";
 import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
 import { Button } from "./ui/button";
 import { DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "./ui/dialog";
+import { useRouter } from "next/navigation";
+import { signOutUser } from "@/lib/utils";
+
 
 const navItems = [
   { href: '/today', icon: Home, label: 'Today' },
@@ -29,7 +32,9 @@ const navItems = [
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
+  const router = useRouter();
 
+  // Uncomment if Logout needed on sidebar-footer
   const handleLogout = async () => {
       await signOutUser();
       router.push('/'); 
@@ -59,8 +64,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           ))}
         </SidebarMenu>
       </SidebarContent>
-      {/* Todo: Decide Later */}
-      {/* <SidebarFooter>
+      <SidebarFooter>
         <Dialog>
             <DialogTrigger asChild><Button variant={"outline"}> <LogOutIcon/> Logout</Button></DialogTrigger>
               <form action="">
@@ -80,7 +84,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               </DialogContent>
               </form>
         </Dialog>
-      </SidebarFooter> */}
+      </SidebarFooter>
     </Sidebar>
   )
 }

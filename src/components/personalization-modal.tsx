@@ -37,7 +37,7 @@ export function PersonalizationModal({ user, onClose }: PersonalizationModalProp
         </DialogHeader>
         <div className="space-y-4 py-4">
           <div className="space-y-2">
-            <Label htmlFor="childName">Child's Name</Label>
+            <Label htmlFor="childName">Child&apos;s Name</Label>
             <Input id="childName" value={childName} onChange={(e) => setChildName(e.target.value)} />
           </div>
           {/* Todo: Add other form fields */}
