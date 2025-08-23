@@ -44,3 +44,10 @@ export type AuthContextType = {
   loading: boolean;
 }
 
+// Profiles
+export type ProfileFormData = {
+  childName: string;
+  childAge: string;
+  healthSensitivities: string[];
+  activityPreferences: string[];
+};
