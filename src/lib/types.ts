@@ -57,6 +57,32 @@ export type AiryRecommendation = {
   current_aqi: number;
 };
 
+export interface ObservationData {
+  pm25: { value: number };
+  temp: { value: number };
+  wind: { value: number };
+  humidity: { value: number };
+}
+
+export interface CurrentObservationResponse {
+  status: string;
+  city: string;
+  data: ObservationData;
+  latest_observed_at: string;
+}
+
+export interface Recommendation {
+  recommendation_level: string;
+  summary: string;
+  recommended_activity: {
+    name: string;
+    location_name: string;
+    developmental_benefit: string;
+    safety_tip: string;
+  };
+  current_aqi: number;
+}
+
 // Profiles
 export type ProfileFormData = {
   childName: string;

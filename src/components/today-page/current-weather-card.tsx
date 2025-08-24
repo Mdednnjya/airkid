@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
-import { fetchCurrentObservation, CurrentObservationResponse } from '@/lib/api';
+import { CurrentObservationResponse } from '@/lib/types';
+import { fetchCurrentObservation } from '@/lib/api';
 
 export default function CurrentWeatherCard() {
   const [data, setData] = useState<CurrentObservationResponse | null>(null);

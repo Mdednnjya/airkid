@@ -5,6 +5,7 @@ import DidYouKnow from "@/components/today-page/did-you-know";
 import { AppSidebar } from "@/components/app-sidebar";
 
 export default function TodayPage() {
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="lg:grid lg:grid-cols-12">
