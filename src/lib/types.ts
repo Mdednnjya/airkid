@@ -44,6 +44,19 @@ export type AuthContextType = {
   loading: boolean;
 }
 
+// Today Page
+export type AiryRecommendation = {
+  recommendation_level: string;
+  summary: string;
+  recommended_activity: {
+    name: string;
+    location_name: string;
+    developmental_benefit: string;
+    safety_tip: string;
+  };
+  current_aqi: number;
+};
+
 // Profiles
 export type ProfileFormData = {
   childName: string;
@@ -51,3 +64,5 @@ export type ProfileFormData = {
   healthSensitivities: string[];
   activityPreferences: string[];
 };
+
+

@@ -116,7 +116,7 @@ export default function ProfilePage() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="childName">Child's First Name</Label>
+                <Label htmlFor="childName">Child&apos;s First Name</Label>
                 <Input
                   id="childName"
                   placeholder="e.g., Budi"
@@ -126,7 +126,7 @@ export default function ProfilePage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="childAge">Child's Age</Label>
+                <Label htmlFor="childAge">Child&apos;s Age</Label>
                 <Select
                   value={formData.childAge}
                   onValueChange={(value) => setFormData((prev) => ({ ...prev, childAge: value }))}
