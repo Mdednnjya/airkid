@@ -83,7 +83,7 @@ export default function AiryRecommendationCard() {
       <CardContent 
         className={cn(
           "space-y-4 overflow-hidden transition-all duration-700 ease-in-out",
-          isLoading ? "max-h-0 opacity-0" : "max-h-[500px] opacity-100"
+          isLoading ? "max-h-0 opacity-0" : "max-h-[650px] opacity-100"
         )}
       >
         <Badge variant={getBadgeVariant(recommendation.recommendation_level)} className="text-sm">
