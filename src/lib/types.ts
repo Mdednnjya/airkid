@@ -91,4 +91,23 @@ export type ProfileFormData = {
   activityPreferences: string[];
 };
 
+// Forecast
+export interface ForecastDay {
+  day: string;
+  avg: number;
+  min: number | null;
+  max: number | null;
+}
 
+export interface ForecastResponse {
+  status: string;
+  city: string;
+  pollutant: string;
+  run: {
+    source_idx: number;
+    created_at: string;
+    source: string;
+  };
+  horizon: number;
+  forecast: ForecastDay[];
+}

@@ -1,7 +1,7 @@
 import { User } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from './firebase';
-import { CurrentObservationResponse } from './types';
+import { CurrentObservationResponse, ForecastDay, ForecastResponse } from './types';
 import { Recommendation } from './types';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -49,4 +49,23 @@ export async function fetchRecommendation(user: User): Promise<Recommendation> {
   }
 
   return await response.json();
+}
+
+export async function fetchForecast(): Promise<ForecastResponse> {
+  const response = await fetch(`${API_BASE_URL}/get-forecast?city=Malang%2C%20Indonesia&pollutant=pm25&horizon=7`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch forecast data from the server.');
+  }
+
+  const data = await response.json();
+  console.log(data)
+
+  return {
+    status: data.status,
+    city: data.city,
+    pollutant: data.pollutant,
+    run: data.run,
+    horizon: data.horizon,
+    forecast: data.forecast, 
+  };
 }

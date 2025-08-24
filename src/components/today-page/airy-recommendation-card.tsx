@@ -48,7 +48,7 @@ export default function AiryRecommendationCard() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">Airy's Recommendation</CardTitle>
+          <CardTitle className="text-lg">Airy&apos;s Recommendation</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           <Skeleton className="h-4 w-1/2" />
@@ -63,7 +63,7 @@ export default function AiryRecommendationCard() {
      return (
        <Card className="border-yellow-200 bg-yellow-50">
         <CardHeader>
-          <CardTitle className="text-lg">Airy's Recommendation</CardTitle>
+          <CardTitle className="text-lg">Airy&apos;s Recommendation</CardTitle>
         </CardHeader>
         <CardContent className="flex items-center space-x-3">
            <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0" />
@@ -78,7 +78,7 @@ export default function AiryRecommendationCard() {
   return (
     <Card className="border-blue-200 bg-blue-50/80">
       <CardHeader>
-        <CardTitle className="text-lg">Airy's Recommendation</CardTitle>
+        <CardTitle className="text-lg">Airy&apos;s Recommendation</CardTitle>
       </CardHeader>
       <CardContent 
         className={cn(

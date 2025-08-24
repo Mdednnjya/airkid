@@ -12,17 +12,17 @@ const getAirQualityVisuals = (pm25: number) => {
   if (pm25 <= 50) {
     return {
       image: "/images/today-page/good-air-quality-02.svg",
-      cardClass: "bg-green-50/20 border-green-100",
+      cardClass: "bg-white-50/20 border-white-100",
     };
   } else if (pm25 <= 100) {
     return {
       image: "/images/today-page/moderate-air-quality-01.svg",
-      cardClass: "bg-yellow-50/20 border-yellow-100",
+      cardClass: "bg-white-50/60 border-white-100",
     };
   } else {
     return {
       image: "/images/today-page/bad-air-quality-01.svg",
-      cardClass: "bg-red-50/20 border-red-100",
+      cardClass: "bg-yellow-50/60 border-yellow-10",
     };
   }
 };
@@ -97,7 +97,7 @@ export default function CurrentWeatherCard() {
         </div>
         <div className="px-4 py-2 space-y-3">
           <div className="flex items-baseline space-x-2">
-            <span className="text-1xl font-bold text-gray-800">{Math.round(data.data.pm25.value)}</span>
+            <span className="text-2xl font-bold text-gray-800">{Math.round(data.data.pm25.value)}</span>
             <span className="text-md font-medium text-gray-600">PM2.5</span>
           </div>
           <div className="grid grid-cols-3 gap-4 text-center border-t pt-3">
