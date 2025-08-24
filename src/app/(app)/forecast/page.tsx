@@ -81,7 +81,7 @@ export default function ForecastPage() {
               </Alert>
             ) : (
               forecastData.map((day) => {
-                const aqiValue = Math.round(day.avg); // Use the avg value directly
+                const aqiValue = Math.round(day.avg);
                 const { color, Icon } = getAqiInfo(aqiValue);
                 const barWidth = `${Math.min(100, (aqiValue / 150) * 100)}%`;
 

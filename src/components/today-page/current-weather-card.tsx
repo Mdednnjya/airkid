@@ -12,7 +12,7 @@ const getAirQualityVisuals = (pm25: number) => {
   if (pm25 <= 50) {
     return {
       image: "/images/today-page/good-air-quality-02.svg",
-      cardClass: "bg-white-50/20 border-white-100",
+      cardClass: "bg-whit-50/20 border-white-100",
     };
   } else if (pm25 <= 100) {
     return {
