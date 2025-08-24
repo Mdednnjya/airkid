@@ -6,6 +6,26 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
 import { CurrentObservationResponse } from '@/lib/types';
 import { fetchCurrentObservation } from '@/lib/api';
+import { cn } from '@/lib/utils';
+
+const getAirQualityVisuals = (pm25: number) => {
+  if (pm25 <= 50) {
+    return {
+      image: "/images/today-page/good-air-quality-02.svg",
+      cardClass: "bg-green-50/20 border-green-100",
+    };
+  } else if (pm25 <= 100) {
+    return {
+      image: "/images/today-page/moderate-air-quality-01.svg",
+      cardClass: "bg-yellow-50/20 border-yellow-100",
+    };
+  } else {
+    return {
+      image: "/images/today-page/bad-air-quality-01.svg",
+      cardClass: "bg-red-50/20 border-red-100",
+    };
+  }
+};
 
 export default function CurrentWeatherCard() {
   const [data, setData] = useState<CurrentObservationResponse | null>(null);
@@ -37,18 +57,12 @@ export default function CurrentWeatherCard() {
               <Skeleton className="h-5 w-20" />
             </div>
             <div className="grid grid-cols-3 gap-4 text-center border-t pt-3">
-              <div>
-                <Skeleton className="h-4 w-10 mx-auto mb-1" />
-                <Skeleton className="h-5 w-12 mx-auto" />
-              </div>
-              <div>
-                <Skeleton className="h-4 w-10 mx-auto mb-1" />
-                <Skeleton className="h-5 w-16 mx-auto" />
-              </div>
-              <div>
-                <Skeleton className="h-4 w-14 mx-auto mb-1" />
-                <Skeleton className="h-5 w-12 mx-auto" />
-              </div>
+              {[...Array(3)].map((_, i) => (
+                <div key={i}>
+                  <Skeleton className="h-4 w-10 mx-auto mb-1" />
+                  <Skeleton className="h-5 w-12 mx-auto" />
+                </div>
+              ))}
             </div>
              <Skeleton className="h-3 w-4/5 mx-auto" />
           </div>
@@ -67,13 +81,15 @@ export default function CurrentWeatherCard() {
     )
   }
 
+  const visuals = getAirQualityVisuals(data.data.pm25.value);
+
   return (
-    <Card className="bg-white/70 backdrop-blur-sm border-0 overflow-hidden shadow-md">
+    <Card className={cn("overflow-hidden shadow-md transition-colors duration-500", visuals.cardClass)}>
       <CardContent className="p-0">
         <div className="relative h-[250px]">
           <Image
-            src="/images/today-page/good-air-quality-02.svg"
-            alt="Weather illustration"
+            src={visuals.image}
+            alt="Weather illustration based on air quality"
             layout="fill"
             objectFit="contain"
             className="rounded-lg"
@@ -81,7 +97,7 @@ export default function CurrentWeatherCard() {
         </div>
         <div className="px-4 py-2 space-y-3">
           <div className="flex items-baseline space-x-2">
-            <span className="text-2xl font-bold text-gray-800">{Math.round(data.data.pm25.value)}</span>
+            <span className="text-1xl font-bold text-gray-800">{Math.round(data.data.pm25.value)}</span>
             <span className="text-md font-medium text-gray-600">PM2.5</span>
           </div>
           <div className="grid grid-cols-3 gap-4 text-center border-t pt-3">
@@ -99,7 +115,7 @@ export default function CurrentWeatherCard() {
             </div>
           </div>
           <p className="text-xs text-gray-400 text-center">
-            Source: AQICN & BMKG | Next update around: {new Date(new Date(data.latest_observed_at).getTime() + 60 * 60 * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
+            Source: BMKG | Data refreshed at: {new Date(new Date(data.latest_observed_at).getTime() + 60 * 60 * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
           </p>
         </div>
       </CardContent>

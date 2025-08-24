@@ -2,25 +2,20 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Recommendation,  } from "@/lib/types";
+import { Recommendation } from "@/lib/types";
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Heart, MapPin, AlertCircle } from "lucide-react";
-import { User } from "firebase/auth";
+import { Heart, MapPin, AlertCircle, Lightbulb } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { fetchRecommendation } from "@/lib/api";
 import { useAuth } from "../auth-provider";
-import { AppSkeleton } from "../app-skeleton";
+import { Separator } from "../ui/separator";
 
 export default function AiryRecommendationCard() {
   const [recommendation, setRecommendation] = useState<Recommendation | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { user, loading } = useAuth();
-
-  if (loading) {
-    return <AppSkeleton />;
-  }
+  const { user } = useAuth();
 
   useEffect(() => {
     if (user) {
@@ -101,6 +96,7 @@ export default function AiryRecommendationCard() {
             <div>
               <h4 className="font-medium text-sm">Activity</h4>
               <p className="text-sm text-muted-foreground">{recommendation.recommended_activity.name}</p>
+              <p className="text-xs text-muted-foreground italic mt-1">{recommendation.recommended_activity.developmental_benefit}</p>
             </div>
           </div>
           <div className="flex items-start space-x-3">
@@ -108,6 +104,16 @@ export default function AiryRecommendationCard() {
             <div>
               <h4 className="font-medium text-sm">Location</h4>
               <p className="text-sm text-muted-foreground">{recommendation.recommended_activity.location_name}</p>
+            </div>
+          </div>
+          <div className="space-y-2 pt-2">
+            <Separator />
+            <div className="flex items-start space-x-3 text-amber-800">
+                <Lightbulb className="h-5 w-5 text-amber-500 mt-1 flex-shrink-0" />
+                <div>
+                    <h4 className="font-medium text-sm">Safety Tip</h4>
+                    <p className="text-xs italic">{recommendation.recommended_activity.safety_tip}</p>
+                </div>
             </div>
           </div>
         </div>
