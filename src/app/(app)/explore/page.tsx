@@ -1,12 +1,15 @@
+import MapView from "@/components/explore-page/Map-view";
 
 export default function ExplorePage() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-gray-800">Explore Locations</h1>
-      <p className="mt-2 text-gray-600">
-        Find the safest and healthiest eco-friendly spots to play near you.
-      </p>
-      {/* Todo: The interactive map component will go here */}
-    </div>
+    <main className="flex flex-col h-screen">
+      <header className="p-4 border-b text-center">
+        <h1 className="text-2xl font-bold">Explore Eco-Friendly Parks</h1>
+        <p className="text-muted-foreground">Discover safe outdoor spaces in Malang.</p>
+      </header>
+      <div className="flex-grow">
+        <MapView />
+      </div>
+    </main>
   );
 }
