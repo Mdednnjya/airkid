@@ -5,7 +5,6 @@ import { onAuthStateChanged, User } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '@/lib/firebase';
 import { PersonalizationModal } from './personalization-modal';
-import { LoadingSpinner } from './loading-spinner';
 import { AuthContextType } from '@/lib/types';
 import { AppSkeleton } from './app-skeleton';
 
